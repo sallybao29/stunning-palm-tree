@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html> 
+<meta charset="UTF-8">
+<title>Splay Trees</title>
+<body>
+
+<h1>What are Splay Trees?</h1>
+<p> Splay trees are self-adjusting binary trees that use a simple restructuring heuristic called “splaying.” 
+    They have been the most widely used basic data structure since they were developed in 1985 by Daniel Sleator and Robert Tarjan of AT&T Bell Laboratories. 
+    Since splay trees are structurally equivalent to binary search trees, smaller nodes are in the left subtree and larger nodes are in the right subtree
+    When a node is accessed, it is “splayed”: the accessed node is moved to the root of the tree using one or more “rotations.” 
+    The splaying heuristic permits fast access to recently accessed nodes.
+</p>
+<aside>Read the <a href = "http://www.cs.cmu.edu/~sleator/papers/self-adjusting.pdf">original paper.</a></aside>
+
+<h1>Runtime</h1>
+<p> Splay trees have an amortized performance of O(lg n) due to its self-adjusting structure. 
+The usage of search trees often involves a sequence of operations. 
+What matters is not the individual times of operations, but the average time to complete a sequence of operations/
+</p>
+
+
+<h1>Applications</h1>
+<p>
+    <ul>
+        <li>Network router</li> 
+        <li>Intrusion detection systems (IDS) </li>
+        <li>Caches</li>
+        <li>Memory allocators</li>
+        <li>Garbage collectors</li>
+        <li>Data compression</li>
+        <li>Windows NT (virtual memory, networking, and file system code)</li>
+    </ul>
+</p>
+
+<h1>Advantages</h1>
+<p>Splay trees are very efficient if their usage pattern is skewed. 
+They also use less space because there is no need to store balance or constraint information.
+The access and update algorithms are simple and easy to conceptualize and implement.
+</p>
+
+<h1>Disadvantages</h1>
+<p>Splay trees require more local adjustments because they must be adjusted during both accesses and updates.
+Individual operations in a sequence can be costly. 
+</p>
+
+<h1>Splay Operations</h1>
+<p>
+    <ul> 
+        <li>Splay: Happens after any update or access operation. Accessed node is moved to root through series of rotations.</li>
+        <li>Insert: Same as normal binary search tree but splay inserted node.</li>
+        <li>Delete: Same as normal binary search tree but splay parent of deleted node.</li>
+        <li>Join: Combine 2 trees if all elements of one tree are smaller than those of the other. Splay largest element of tree with smaller children and set the second tree to new root’s right child.</li>
+        <li>Split: The splitting node is splayed. The left and right subtrees of the splayed node are the two new splay trees.</li>
+    </ul>
+</p>
+
+<h1>Splay Rotations</h1>
+<p>
+    Simple Rotation
+    <ul>    
+        <li>P is root</li>
+        <li>Rotate X about P</li>
+        <li>If X is left child, rotate right</li>
+        <li>If X is right child, rotate left</li>
+        <li>Resulting tree has same height</li>
+    </ul>
+    Zig-Zig/Zag-Zag
+    <ul>
+        <li>P is not root (path from X to root is straight)</li>
+        <li>Rotate P about G, and then X about P</li>
+        <li>If P and X are left children, rotate them to the right</li>
+        <li>If P and X are right children, rotate them to the left</li>
+        <li>Resulting tree has same height</li>
+    </ul>
+    Zig-Zag/Zag-Zig
+    <ul>
+        <li>P is not root (path from X to root is crooked)</li>
+        <li>Rotate X about P and then X about G</li>
+        <li>If X is right child and P is left child, rotate left then right</li>
+        <li>If X is left child and P is right child, rotate right then left </li>
+        <li>Resulting tree has shorter height</li>
+    </ul>
+</p>
+
+<iframe src="https://www.cs.usfca.edu/~galles/visualization/SplayTree.html" width = "1200" height = "650" scrolling = "no">
+    <p>Your browser does not support iframes.</p>
+</iframe>
+<a href = "https://www.cs.usfca.edu/~galles/visualization/SplayTree.html">Original Website</a>
+
+</body>
+
+<script src="script.js"></script>
+</html>
