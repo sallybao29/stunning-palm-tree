@@ -1,26 +1,68 @@
 <!DOCTYPE html>
 <html> 
+<head>
 <meta charset="UTF-8">
 <title>Splay Trees</title>
-<body>
 
-<h1>What are Splay Trees?</h1>
+ <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+ <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ 
+ <style>
+     #title-img {
+         width: 100%;
+         height: 400px;
+     }
+     
+     .section {
+         margin: 1em 25% 1em 25%;
+
+     }
+     
+     p {
+         font-size: 1.2em;
+     }
+ </style>
+</head>
+
+<body>
+<div class=container>
+    <ul class="nav nav-pills nav-justified">
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#runtime">Runtime</a></li>
+        <li><a href="#applications">Applications</a></li>
+        <li><a href="#pros-and-cons">Pros and Cons</a></li>
+        <li><a href="#splay-operations">Splay Operations</a></l> 
+        <li><a href="#splay-rotations">Splay Rotations</a></li>
+    </ul>
+</div>    
+    
+<h1 style="text-align:center;">SPLAY TREES</h1>
+<img id="title-img" src="http://www.palmtreesdirectinc.com/images/SB+Palm+Trees+for+HomePage+Crop.png
+">
+
+<div class="section">
+<a name = "intro" href = "#intro">#<span>What are Splay Trees?</span></a>
 <p> Splay trees are self-adjusting binary trees that use a simple restructuring heuristic called “splaying.” 
     They have been the most widely used basic data structure since they were developed in 1985 by Daniel Sleator and Robert Tarjan of AT&T Bell Laboratories. 
-    Since splay trees are structurally equivalent to binary search trees, smaller nodes are in the left subtree and larger nodes are in the right subtree
+    Since splay trees are structurally equivalent to binary search trees, smaller nodes are in the left subtree and larger nodes are in the right subtree.
     When a node is accessed, it is “splayed”: the accessed node is moved to the root of the tree using one or more “rotations.” 
     The splaying heuristic permits fast access to recently accessed nodes.
 </p>
 <aside>Read the <a href = "http://www.cs.cmu.edu/~sleator/papers/self-adjusting.pdf">original paper.</a></aside>
+</div>
 
-<h1>Runtime</h1>
-<p> Splay trees have an amortized performance of O(lg n) due to its self-adjusting structure. 
-The usage of search trees often involves a sequence of operations. 
-What matters is not the individual times of operations, but the average time to complete a sequence of operations/
+<div class="section">
+<a name = "runtime" href = "#runtime">#<span>Runtime</span></a>
+<p> As the usage of search trees often involves a sequence of operations, it is better to measure splay tree runtime as amortized time. 
+Amortized efficiency focuses on improving the efficiency of operations running in sequence, as opposed to single operations. 
+Splay trees have an amortized performance of O(lg n) due to their self-adjusting nature. 
+The additional step of splaying after operations makes subsequent accesses faster.
 </p>
+</div>
 
-
-<h1>Applications</h1>
+<div class="section">
+<a name = "applications" href = "#applications">#<span>Applications</span></a>
 <p>
     <ul>
         <li>Network router</li> 
@@ -32,19 +74,23 @@ What matters is not the individual times of operations, but the average time to 
         <li>Windows NT (virtual memory, networking, and file system code)</li>
     </ul>
 </p>
+</div>
 
-<h1>Advantages</h1>
+<div class="section">
+<a name = "pros-and-cons" href = "#pros-and-cons">#<span>Pros and Cons</span></a>
 <p>Splay trees are very efficient if their usage pattern is skewed. 
 They also use less space because there is no need to store balance or constraint information.
 The access and update algorithms are simple and easy to conceptualize and implement.
 </p>
-
-<h1>Disadvantages</h1>
-<p>Splay trees require more local adjustments because they must be adjusted during both accesses and updates.
+<p>
+Splay trees require more local adjustments because they must be adjusted during both accesses and updates.
 Individual operations in a sequence can be costly. 
 </p>
+</div>
 
-<h1>Splay Operations</h1>
+
+<div class="section">
+<a name = "splay-operations" href = "#splay-operations">#<span>Splay Operations</span></a>
 <p>
     <ul> 
         <li>Splay: Happens after any update or access operation. Accessed node is moved to root through series of rotations.</li>
@@ -54,8 +100,10 @@ Individual operations in a sequence can be costly.
         <li>Split: The splitting node is splayed. The left and right subtrees of the splayed node are the two new splay trees.</li>
     </ul>
 </p>
+</div>
 
-<h1>Splay Rotations</h1>
+<div class="section">
+<a name = "splay-rotations" href = "#splay-rotations">#<span>Splay Rotations</span></a>
 <p>
     Simple Rotation
     <ul>    
@@ -65,6 +113,8 @@ Individual operations in a sequence can be costly.
         <li>If X is right child, rotate left</li>
         <li>Resulting tree has same height</li>
     </ul>
+    <img src = "http://yaikhom.com/res/splay_rotate_right.png">
+    <br>
     Zig-Zig/Zag-Zag
     <ul>
         <li>P is not root (path from X to root is straight)</li>
@@ -73,6 +123,9 @@ Individual operations in a sequence can be costly.
         <li>If P and X are right children, rotate them to the left</li>
         <li>Resulting tree has same height</li>
     </ul>
+    <img src = "http://yaikhom.com/res/splay_zig_zig_right_right.png">
+    
+    <br>
     Zig-Zag/Zag-Zig
     <ul>
         <li>P is not root (path from X to root is crooked)</li>
@@ -81,12 +134,16 @@ Individual operations in a sequence can be costly.
         <li>If X is left child and P is right child, rotate right then left </li>
         <li>Resulting tree has shorter height</li>
     </ul>
+    <img src = "http://yaikhom.com/res/splay_zig_zag_left_right.png">
 </p>
+</div>
 
-<iframe src="https://www.cs.usfca.edu/~galles/visualization/SplayTree.html" width = "1200" height = "650" scrolling = "no">
+<div class="section">
+<iframe src="https://www.cs.usfca.edu/~galles/visualization/SplayTree.html" width = "1000" height = "650" scrolling = "yes">
     <p>Your browser does not support iframes.</p>
 </iframe>
 <a href = "https://www.cs.usfca.edu/~galles/visualization/SplayTree.html">Original Website</a>
+</div>
 
 </body>
 
