@@ -15,12 +15,25 @@
      }
      
      .section {
-         margin: 1em 25% 1em 25%;
+         margin: 1.5em 25% 1.5em 25%;
 
      }
      
      p {
          font-size: 1.2em;
+     }
+     
+     .section a {
+         font-size: 2em;
+     }
+     
+     .section a:link, .section a:visited {
+         text-decoration: none;
+     }
+     
+     .section a span {
+         color: black;
+         font-weight: bold;
      }
  </style>
 </head>
@@ -34,6 +47,7 @@
         <li><a href="#pros-and-cons">Pros and Cons</a></li>
         <li><a href="#splay-operations">Splay Operations</a></l> 
         <li><a href="#splay-rotations">Splay Rotations</a></li>
+        <li><a href="#demo">Demo</a></li>
     </ul>
 </div>    
     
@@ -49,7 +63,7 @@
     When a node is accessed, it is “splayed”: the accessed node is moved to the root of the tree using one or more “rotations.” 
     The splaying heuristic permits fast access to recently accessed nodes.
 </p>
-<aside>Read the <a href = "http://www.cs.cmu.edu/~sleator/papers/self-adjusting.pdf">original paper.</a></aside>
+<aside>Read the <a href = "http://www.cs.cmu.edu/~sleator/papers/self-adjusting.pdf" style = "font-size:medium">original paper.</a></aside>
 </div>
 
 <div class="section">
@@ -78,7 +92,7 @@ The additional step of splaying after operations makes subsequent accesses faste
 
 <div class="section">
 <a name = "pros-and-cons" href = "#pros-and-cons">#<span>Pros and Cons</span></a>
-<p>Splay trees are very efficient if their usage pattern is skewed. 
+<p>Splay trees are very efficient if their usage pattern is skewed, and certain subtrees are accessed more frequently than others. 
 They also use less space because there is no need to store balance or constraint information.
 The access and update algorithms are simple and easy to conceptualize and implement.
 </p>
@@ -93,11 +107,14 @@ Individual operations in a sequence can be costly.
 <a name = "splay-operations" href = "#splay-operations">#<span>Splay Operations</span></a>
 <p>
     <ul> 
-        <li>Splay: Happens after any update or access operation. Accessed node is moved to root through series of rotations.</li>
-        <li>Insert: Same as normal binary search tree but splay inserted node.</li>
-        <li>Delete: Same as normal binary search tree but splay parent of deleted node.</li>
-        <li>Join: Combine 2 trees if all elements of one tree are smaller than those of the other. Splay largest element of tree with smaller children and set the second tree to new root’s right child.</li>
-        <li>Split: The splitting node is splayed. The left and right subtrees of the splayed node are the two new splay trees.</li>
+        <li><b>Splay:</b> Happens after any update or access operation. Accessed node is moved to root through series of rotations.</li>
+        <li><b>Insert:</b> Same as normal binary search tree but splay inserted node.</li>
+        <li><b>Delete:</b> Same as normal binary search tree but splay parent of deleted node.</li>
+        <li><b>Join:</b> Combine 2 trees if all elements of one tree are smaller than those of the other. Splay largest element of tree with smaller children and set the second tree to new root’s right child.</li>
+        <img src = "../splay_join.PNG">
+        <li><b>Split:</b> The splitting node is splayed. The left and right subtrees of the splayed node are the two new splay trees.</li>
+        <img src = "../splay_split_1.PNG">
+        <img src = "../splay_split_2.PNG">
     </ul>
 </p>
 </div>
@@ -105,7 +122,7 @@ Individual operations in a sequence can be costly.
 <div class="section">
 <a name = "splay-rotations" href = "#splay-rotations">#<span>Splay Rotations</span></a>
 <p>
-    Simple Rotation
+    <b>Simple Rotation</b>
     <ul>    
         <li>P is root</li>
         <li>Rotate X about P</li>
@@ -115,7 +132,7 @@ Individual operations in a sequence can be costly.
     </ul>
     <img src = "http://yaikhom.com/res/splay_rotate_right.png">
     <br>
-    Zig-Zig/Zag-Zag
+    <b>Zig-Zig/Zag-Zag</b>
     <ul>
         <li>P is not root (path from X to root is straight)</li>
         <li>Rotate P about G, and then X about P</li>
@@ -126,7 +143,7 @@ Individual operations in a sequence can be costly.
     <img src = "http://yaikhom.com/res/splay_zig_zig_right_right.png">
     
     <br>
-    Zig-Zag/Zag-Zig
+    <b>Zig-Zag/Zag-Zig</b>
     <ul>
         <li>P is not root (path from X to root is crooked)</li>
         <li>Rotate X about P and then X about G</li>
@@ -135,17 +152,20 @@ Individual operations in a sequence can be costly.
         <li>Resulting tree has shorter height</li>
     </ul>
     <img src = "http://yaikhom.com/res/splay_zig_zag_left_right.png">
+    <aside>See more <a href = "http://software.ucv.ro/~mburicea/lab7ASD.pdf" style="font-size:medium">here</a>.</aside>
 </p>
 </div>
 
 <div class="section">
-<iframe src="https://www.cs.usfca.edu/~galles/visualization/SplayTree.html" width = "1000" height = "650" scrolling = "yes">
+<a name = "demo" href = "#demo">#<span>Demo</span></a>
+<center>
+<iframe src="https://www.cs.usfca.edu/~galles/visualization/SplayTree.html" width = "1000" height = "650" scrolling = "yes" align="middle">
     <p>Your browser does not support iframes.</p>
 </iframe>
-<a href = "https://www.cs.usfca.edu/~galles/visualization/SplayTree.html">Original Website</a>
+</center>
+<a href = "https://www.cs.usfca.edu/~galles/visualization/SplayTree.html" style = "font-size:medium">Original Website</a>
 </div>
 
 </body>
 
-<script src="script.js"></script>
 </html>
